@@ -34,3 +34,9 @@ document.onreadystatechange = () => {
     false
   );
 };
+
+// If the user made any changes with forms, then prevent them 
+// from refreshing accidentally
+window.onbeforeunload = function(e) {
+   return true;
+};

@@ -1,0 +1,12 @@
+.tlm-pointer {
+  cursor: pointer;
+}
+
+body {
+  height: 100dvh;
+  width: 100dvw;
+}
+
+.nav-item a::after, .nav-item a::before {
+  content: "|"
+}

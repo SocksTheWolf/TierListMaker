@@ -45,12 +45,10 @@ function moveRowDown(row_id, table_id) {
 }
 
 function addElementInRow(row_id) {
-  const tier = tiers.filter(
-    (value) => value.toLowerCase() === row_id.replace(/^tier-/, "")
-  )[0];
+  const tier_title = document.getElementById(row_id).firstChild.innerText;
   document.getElementById(
     "addContentModalTitle"
-  ).innerText = `Add content to tier ${tier}`;
+  ).innerText = `Add content to tier ${tier_title}`;
 
   const tier_color = window
     .getComputedStyle(document.getElementById(row_id).firstChild)
@@ -135,6 +133,14 @@ function addRow() {
   table_body.appendChild(row);
 }
 
+function deleteRow(row_id) {
+  const tier_title = document.getElementById(row_id).firstChild.innerText;	
+  if (confirm(`Are you sure you want to delete row "${tier_title}"?`) == true) {
+    const row = document.getElementById(row_id);
+    row.parentElement.removeChild(row);
+  }
+}
+
 function createSettingsTd(row_id, table_id) {
   let add = createFAElement("fas", "fa-plus");
   add.addEventListener("click", () => addElementInRow(row_id));
@@ -142,9 +148,11 @@ function createSettingsTd(row_id, table_id) {
   go_up.addEventListener("click", () => moveRowUp(row_id, table_id));
   let go_down = createFAElement("fas", "fa-level-down-alt");
   go_down.addEventListener("click", () => moveRowDown(row_id, table_id));
+  let delete_row = createFAElement("fas", "fa-trash");
+  delete_row.addEventListener("click", () => deleteRow(row_id));
 
   let container = document.createElement("td");
-  [add, go_up, go_down].forEach((el, idx, max) => {
+  [add, go_up, go_down, delete_row].forEach((el, idx, max) => {
     el.classList.add("tlm-pointer");
     container.appendChild(el);
     if (idx !== max - 1) container.appendChild(spacing());

@@ -35,6 +35,7 @@ function loadImageAndAddToDOM(file, stretch, cb) {
   reader.onload = (e) => {
     let img = document.createElement("img");
     img.src = e.target.result;
+    img.title = img.alt = file.name.split(".")[0];
     img.height = 128;
     if (stretch) img.width = 128;
     img.setAttribute("id", stringToHash(img.src));

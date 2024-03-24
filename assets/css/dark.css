@@ -1,0 +1,16 @@
+#addContentModal, #helpModal {
+  color: black;
+}
+
+body {
+  color: white !important;
+  background-color: rgb(40, 40, 40);
+}
+
+tbody tr th {
+  color: black;
+}
+
+.table {
+  color: white;
+}
