@@ -133,9 +133,9 @@ function addRow() {
   table_body.appendChild(row);
 }
 
-function deleteRow(row_id) {
+function deleteRow(row_id, shiftClicked) {
   const tier_title = document.getElementById(row_id).firstChild.innerText;	
-  if (confirm(`Are you sure you want to delete row "${tier_title}"?`) == true) {
+  if (shiftClicked || confirm(`Are you sure you want to delete row "${tier_title}"?`)) {
     const row = document.getElementById(row_id);
     row.parentElement.removeChild(row);
   }
@@ -149,7 +149,7 @@ function createSettingsTd(row_id, table_id) {
   let go_down = createFAElement("fas", "fa-level-down-alt");
   go_down.addEventListener("click", () => moveRowDown(row_id, table_id));
   let delete_row = createFAElement("fas", "fa-trash");
-  delete_row.addEventListener("click", () => deleteRow(row_id));
+  delete_row.addEventListener("click", (ev) => deleteRow(row_id, ev.shiftKey));
 
   let container = document.createElement("td");
   [add, go_up, go_down, delete_row].forEach((el, idx, max) => {
@@ -180,6 +180,7 @@ function generateTable(identifier, count = -1) {
     const tier_th = document.createElement("th");
     tier_th.setAttribute("scope", "row");
     tier_th.setAttribute("contenteditable", "true");
+    tier_th.setAttribute("spellcheck", "false");
     tier_th.classList.add(
       `tlm-bgcolor-${row_name}`,
       "text-center",

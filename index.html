@@ -99,12 +99,10 @@
         <div class="w-100 p-2">
           <table class="table">
             <thead>
-              <tr>
-                <th scope="col" class="col-1 text-center">Tier</th>
-                <th scope="col" class="col-9 text-center">Content</th>
-                <th scope="col" class="col-2 text-center" id="settings">
-                  <span class="d-none d-md-inline">Settings</span>
-                </th>
+              <tr class="text-center">
+                <th scope="col" class="col-2">Tier</th>
+                <th scope="col" class="col-9">Content</th>
+                <th scope="col" class="col-1" id="settings">Settings</th>
               </tr>
             </thead>
             <tbody id="tableBody"></tbody>
@@ -212,6 +210,10 @@
             <p>
               Use the "Settings" column to add bulk images to tiers, change tier
               colors, and move tiers up and down in the tier list.
+            </p>
+            <p>
+              Hold Shift while pressing the Trash button to skip confirmation when
+              deleting a row.
             </p>
           </div>
           <div class="modal-footer">
