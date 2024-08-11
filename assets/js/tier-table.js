@@ -77,7 +77,7 @@ function addRow() {
   const identifier = "tableBody";
   const table_body = document.getElementById(identifier);
 
-  const row_index = table_body.childElementCount;
+  const row_index = Number(table_body.getAttribute("numRows")) + 1;
   const row_name = tiers[row_index % tiers.length].toLowerCase();
   const row_identifier = `tier-${row_index}`;
 
@@ -131,6 +131,7 @@ function addRow() {
   row.appendChild(settings);
 
   table_body.appendChild(row);
+  table_body.setAttribute("numRows", row_index);
 }
 
 function deleteRow(row_id, shiftClicked) {
@@ -228,5 +229,6 @@ function generateTable(identifier, count = -1) {
     row.appendChild(settings);
 
     table_body.appendChild(row);
+    table_body.setAttribute("numRows", count);
   });
 }
